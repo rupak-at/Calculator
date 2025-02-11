@@ -23,6 +23,9 @@ const Calculator = () => {
      (bodyItem === '/' || bodyItem === '*') && 
      (getBody[getBody.length-1] === '*' || getBody[getBody.length-1] === '/')) return
 
+    if(getBody.length=== 0 &&  //checking for intial char should not be * / %
+      (bodyItem=== '*' || bodyItem=== '/' || bodyItem=== '%')) return
+   
     setGetBody([...getBody, bodyItem]);
   };
 

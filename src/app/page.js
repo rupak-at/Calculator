@@ -10,26 +10,27 @@ const Calculator = () => {
   const symbols = ["+", "-", "/", ".", "%"];
 
   const handleClick = (bodyItem) => {
+    const lastItemOFUI = getBody[getBody.length - 1]
     if (
       getBody.length > 0 && //checking if +, - ..are repating right after
-      symbols.some((symbol) => symbol === getBody[getBody.length - 1]) &&
-      bodyItem === getBody[getBody.length - 1]
+      symbols.some((symbol) => symbol === lastItemOFUI) &&
+      bodyItem === lastItemOFUI
     )
       return;
 
     if (
       getBody.length > 0 && //checking for / or % coming together and vice versa
       (bodyItem === "%" || bodyItem === "/") &&
-      (getBody[getBody.length - 1] === "/" ||
-        getBody[getBody.length - 1] === "%")
+      (lastItemOFUI === "/" ||
+        lastItemOFUI === "%")
     )
       return;
 
     if (
       getBody.length > 0 && //checking for / or * coming together and vice versa
       (bodyItem === "/" || bodyItem === "*") &&
-      (getBody[getBody.length - 1] === "*" ||
-        getBody[getBody.length - 1] === "/")
+      (lastItemOFUI === "*" ||
+        lastItemOFUI === "/")
     )
       return;
 
@@ -39,12 +40,12 @@ const Calculator = () => {
     )
       return;
 
-    if (getBody[getBody.length - 1] === "*" && bodyItem === "%") return; //checks for * and / should not be one after
+    if (lastItemOFUI === "*" && bodyItem === "%") return; //checks for * and / should not be one after
 
     if (
-      (getBody[getBody.length - 1] === "-" ||
-        getBody[getBody.length - 1] === "+") && //checks for + or - and / one after
-      bodyItem === "/"
+      (lastItemOFUI === "-" ||
+        lastItemOFUI === "+") && //checks for + or - and /,*,% one after
+      (bodyItem === "/" || bodyItem === '*' || bodyItem === '%')
     )
       return;
 
